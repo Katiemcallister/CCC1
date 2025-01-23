@@ -1,0 +1,47 @@
+<!-- index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>User List</h1>
+
+    <% if (employees && employees.length > 0) { %>
+        <table>
+            <thead>
+                <tr>
+
+                    <tr>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Salary</th>
+                    <th>Role</th>
+                    <th>Employee Number</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% employees.forEach(user => { %>
+                    <tr>
+                        <td><%= employee.name %></td>
+                        <td><%= employee.email %></td>
+                        <td><%= employee.role %></td>
+                        <td><a href="/employees/<%= employee.id %>">View</a></td>
+                        <td><a href="/employees/update/<%= employee.id %>">Edit</a></td>
+                        <td><a href="/employees/delete/<%= employee.id %>">Delete</a></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    <% } else { %>
+        <p>No users found.</p>
+    <% } %>
+
+    <form action="/employees/add" method="get">
+        <input type="submit" value="Create New Employee">
+    </form> 
+</body>
+</html>
