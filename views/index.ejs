@@ -7,21 +7,22 @@
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
-    
-    <h1>Add New User</h1>
+    <h1>Update User</h1>
 
-    <form action="/employees/add" method="post">
+    <form action="/employees/update/<%= employee.id %>" method="post">
         <label for="name">Name:</label><br>
-        <input type="name" id="name" name="name"><br>
+        <input type="text" id="name" name="name" value="<%= employee.name %>"><br>
 
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email"><br>
+        <label for="address">Address:</label><br>
+        <input type="text" id="address" name="address" value="<%= employee.address %>"><br>
+
+        <label for="salary">Salary:</label><br>
+        <input type="text" id="salary" name="salary" value="<%= employee.salary %>"><br>
 
         <label for="role">Role:</label><br>
-        <input type="role" id="role" name="role"><br>
+        <input type="text" id="role" name="role" value="<%= employee.role %>"><br>
 
         <input type="submit" value="Submit">
     </form> 
-
   </body>
 </html>
