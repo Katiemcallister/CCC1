@@ -9,8 +9,6 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var employeesRouter = require('./routes/employees');
 
-const db_conn = require('./utils/dbConn');
-
 var app = express();
 
 // view engine setup

@@ -1,13 +1,15 @@
-const db = require("../utils/dbConn.js");
+const employeesService = require("../services/employeesService");
 const express = require('express');
 
 const  router = express.Router();
 
-// Create a new user form
 router.get('/list', (req, res) => {
-    db.query("SELECT * FROM employee;", [], (_, employees) => {
-        res.render('employeeList', {employees})
-    });
+    let employees = new employeesService().getAllEmployees();
+    res.render('employeeList', {employees})
+});
+
+router.get('/view/:id', (req, res) => {
+    console.log("TODO");
 });
 
 module.exports = router;
