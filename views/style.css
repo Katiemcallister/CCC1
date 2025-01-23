@@ -1,0 +1,270 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Quicksand', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background: #f8f9fa;
+}
+
+header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #f8f9fa;
+}
+
+header img.icon {
+    width: 100px;
+    height: auto;
+    margin-right: 20px; /* Add gap between logo and text */
+}
+
+header nav {
+    display: flex;
+    align-items: center;
+}
+
+header nav a {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0 10px;
+    font-size: 1.20em;
+    padding-left: 10px;
+    text-decoration: none;
+    color: black;
+    position: relative;
+}
+
+header nav a::after {
+    content: '';
+    font-family: Arial, Helvetica, sans-serif;
+    display: block;
+    width: 0;
+    height: 2px;
+    background: blue;
+    transition: width 0.3s;
+    position: absolute;
+    bottom: -2px; /* Position the line a bit lower */
+    left: 0;
+}
+
+header nav a:hover::after {
+    width: 100%;
+}
+
+h1 {
+    font-size: 4em;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.login-container {
+    background: #fff;
+    padding: 40px;
+    border-radius: 4px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.login-container h2 {
+    font-size: 2em;
+    color: #333;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+}
+
+.login-container .form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.login-container .form .inputBox {
+    position: relative;
+    width: 100%;
+}
+
+.login-container .form .inputBox input {
+    width: 100%;
+    background: #f1f1f1;
+    border: none;
+    outline: none;
+    padding: 15px;
+    border-radius: 4px;
+    color: #333;
+    font-weight: 500;
+    font-size: 1em;
+}
+
+.login-container .form .inputBox i {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-style: normal;
+    color: #aaa;
+    transition: 0.5s;
+    pointer-events: none;
+}
+
+.login-container .form .inputBox input:focus ~ i,
+.login-container .form .inputBox input:valid ~ i {
+    transform: translateY(-150%);
+    font-size: 0.8em;
+    color: #333;
+}
+
+.login-container .form .links {
+    display: flex;
+    justify-content: space-between;
+}
+
+.login-container .form .links a {
+    color: #333;
+    text-decoration: none;
+}
+
+.login-container .form .links a:nth-child(2) {
+    color: blue;
+    font-weight: 600;
+}
+
+.login-container .form .inputBox input[type="submit"] {
+    padding: 10px;
+    background: blue;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.35em;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+}
+
+input[type="submit"]:active {
+    opacity: 0.6;
+}
+
+.signup-container {
+    border: 1px solid #ccc;
+    padding: 5px;
+    background-color: lightblue;
+    border-color: darkblue;
+    text-align: center;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 300px;
+}
+
+.footer {
+    background: linear-gradient(180deg, #252d4f 0%, rgba(37, 45, 79, 0) 100%), linear-gradient(180deg, #283583 0%, #41679f 57.29%, #61a83f 76.6%, #61a83f 87.3%, #004631 99.98%);
+    color: #fff;
+    padding: 20px 0;
+    margin-top: auto;
+    width: 100%;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.footer__nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.footer__nav-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.footer__nav-list {
+    list-style: none;
+    padding: 0;
+}
+
+.footer__nav-list-item {
+    margin-bottom: 5px;
+}
+
+.footer__nav-list-link {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer__nav-list-link:hover {
+    color: #61a83f;
+}
+
+.footer__logo-wrap {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.footer__logo-img {
+    max-width: 100px;
+}
+
+.footer__social {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.footer__socials-list {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    list-style: none; /* Removes the dot */
+}
+
+.footer__social .social-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.5em;
+
+}
+
+.footer__social .social-link i {
+    display: flex;
+    justify-content: center;
+    margin-right: 5px;
+}
+
+.footer__bottom {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.footer__slogan {
+    margin-bottom: 10px;
+}
+
+.footer__copyrights {
+    margin-top: 10px;
+}
