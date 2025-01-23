@@ -8,9 +8,16 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <nav>
+        <a href="/">Login</a> |
+        <a href="/employees">Employees</a> |
+        <a href="/users">Users</a>
+      </nav>
+      <hr>
+      
     <h1>Add New User</h1>
 
-    <form action="/employees/add" method="post">
+    <form action="/users/add" method="post">
         <label for="name">Name:</label><br>
         <input type="name" id="name" name="name"><br>
 
