@@ -2,26 +2,23 @@ var express = require('express');
 var router = express.Router();
 
 const EmployeeService = require('../services/employeeService');
-const employeeService = new EmployeeService(); // Corrected instantiation
+const employeeService = new EmployeeService(); // Correct instantiation
 
-// Initialize an in-memory counter for unique IDs
-let employeeIdCounter = 1;
+// Ensure employees array exists in EmployeeService
+employeeService.employees = [];
 
-// Extend EmployeeService with ID generation logic
-employeeService.createEmployee = function (newEmployee) {
+// Override the createEmployee method in EmployeeService
+EmployeeService.prototype.createEmployee = function (newEmployee) {
   const employeeWithId = {
-    id: employeeIdCounter++, // Auto-incrementing ID
+    id: this.employees.length + 1, // Auto-incrementing ID based on array length
     ...newEmployee,
   };
 
-  // Store the new employee in the service
+  // Store the new employee
   this.employees.push(employeeWithId);
 
   return employeeWithId;
 };
-
-// Extend EmployeeService with methods if necessary
-employeeService.employees = []; // Simulated in-memory employee storage
 
 // Create a new employee form
 router.get('/add', (req, res) => {
@@ -36,6 +33,7 @@ router.post('/add', (req, res) => {
   // Redirect to the employees list (not showing ID immediately)
   res.redirect('/employees');
 });
+
 
 // Read all employees
 router.get('/', (req, res) => {
@@ -79,34 +77,3 @@ router.post('/delete/:id', (req, res) => {
 });
 
 module.exports = router;
-
-class EmployeeService {
-    constructor() {
-      this.employees = [];
-    }
-  
-    getAllEmployees() {
-      return this.employees;
-    }
-  
-    getEmployeeById(id) {
-      return this.employees.find((employee) => employee.id === id);
-    }
-  
-    updateEmployee(id, updatedData) {
-      const index = this.employees.findIndex((employee) => employee.id === id);
-      if (index === -1) return null;
-  
-      this.employees[index] = { ...this.employees[index], ...updatedData };
-      return this.employees[index];
-    }
-  
-    deleteEmployee(id) {
-      const index = this.employees.findIndex((employee) => employee.id === id);
-      if (index === -1) return null;
-  
-      return this.employees.splice(index, 1)[0];
-    }
-  }
-  
-  module.exports = EmployeeService;

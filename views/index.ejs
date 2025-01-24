@@ -8,26 +8,31 @@
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
     
-    <h1>Add New Employee</h1>
+    <header id="header" class="header">
+        <a href="/">Login</a> |
+        <a href="/employees">Employees</a> |
+        <a href="/users">Users</a>
+    </header>
+    <hr>
+  <h1>Add New Employee</h1>
 
-    <form action="/employees/add" method="post">
-        <label for="name">Name:</label><br>
-        <input type="name" id="name" name="name"><br>
+  <form action="/employees/add" method="post">
+      <label for="name">Name:</label><br>
+      <input type="name" id="name" name="name"><br>
 
-        <label for="address">Address:</label><br>
-        <input type="address" id="address" name="address"><br>
+      <label for="address">Address:</label><br>
+      <input type="address" id="address" name="address"><br>
 
-        <label for="salary">Salary:</label><br>
-        <input type="salary" id="salary" name="salary"><br>
+      <label for="salary">Salary:</label><br>
+      <input type="salary" id="salary" name="salary"><br>
 
-        <label for="role">Role:</label><br>
-        <input type="role" id="role" name="role"><br>
+      <label for="role">Role:</label><br>
+      <input type="role" id="role" name="role"><br>
 
-        <label for="employee-number">Employee Number:</label><br>
-        <input type="employee-number" id="employee-number" name="employee-number"><br>
+      <input type="submit" value="Submit">
+  </form>
 
-        <input type="submit" value="Submit">
-    </form>
+  <script src="employees.js"></script>
       
     </body>
 </html>
