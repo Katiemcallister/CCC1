@@ -1,5 +1,4 @@
 const AbstractDataService = require('./AbstractDataService');
-const fs = require('fs');
 
 class JobRoleService extends AbstractDataService {
     constructor() {
