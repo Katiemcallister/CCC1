@@ -1,0 +1,29 @@
+<!-- index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Job Roles</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Update Job Roles</h1>
+
+    <form action="/jobroles/update/<%= jobRole.id %>" method="post">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" value="<%= jobRole.name %>"><br>
+
+        <label for="level">Level:</label><br>
+        <input type="level" id="level" name="level" value="<%= jobRole.level %>"><br>
+
+        <label for="capability">Capability:</label><br>
+        <input type="text" id="capability" name="capability" value="<%= jobRole.capability %>"><br>
+
+        <label for="description">Description:</label><br>
+        <input type="text" id="description" name="description" value="<%= jobRole.description %>"><br>
+
+        <input type="submit" value="Submit">
+    </form> 
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!-- index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Job Role</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Add New Job Role</h1>
+
+    <form action="/jobroles/add" method="post">
+        <label for="name">Name:</label><br>
+        <input type="name" id="name" name="name"><br>
+
+        <label for="level">Level:</label><br>
+        <input type="level" id="level" name="level"><br>
+
+        <label for="capability">Capability:</label><br>
+        <input type="capability" id="capability" name="capability"><br>
+
+        <label for="description">Description:</label><br>
+        <input type="description" id="description" name="description"><br>
+
+        <input type="submit" value="Submit">
+    </form> 
+</body>
+</html>

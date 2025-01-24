@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Code ninja",
+    "level": "100",
+    "capability": "Everything",
+    "description": "Something something buzzwords.",
+    "id": 1
+  },
+  {
+    "name": "Head of Nothing",
+    "level": "1",
+    "capability": "Nothing",
+    "description": "Take doing nothing to the next level!",
+    "id": 2
+  }
+]
