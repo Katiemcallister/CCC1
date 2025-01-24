@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User List</title>
+    <title>Employee List</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,41 +16,43 @@
             <a href="/employees">Employees</a>
         </nav>
     </header>
-    <h1>User List</h1>
+    <h1>Employee List</h1>
 
-    <% if (users && users.length > 0) { %>
+    <% if (employees && employees.length > 0) { %>
         <table>
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Email</th>
-                    <th>Password</th>
+                    <th>Address</th>
+                    <th>Salary</th>
                     <th>Role</th>
+                    <th>Employee Number</th>
                     <th></th>
                     <th></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <% users.forEach(user => { %>
+                <% employees.forEach(employee => { %>
                     <tr>
-                        <td><%= user.name %></td>
-                        <td><%= user.email %></td>
-                        <td><%= user.password %></td>
-                        <td><%= user.role %></td>
-                        <td><a href="/user/<%= user.id %>">View</a></td>
-                        <td><a href="/user/update/<%= user.id %>">Edit</a></td>
-                        <td><a href="/user/delete/<%= user.id %>">Delete</a></td>
+                        <td><%= employee.name %></td>
+                        <td><%= employee.address %></td>
+                        <td><%= employee.salary %></td>
+                        <td><%= employee.role %></td>
+                        <td><%= employee.employee_number %></td>
+                        <td><a href="/employees/<%= employee.id %>">View</a></td>
+                        <td><a href="/employees/update/<%= employee.id %>">Edit</a></td>
+                        <td><a href="/employees/delete/<%= employee.id %>">Delete</a></td>
                     </tr>
                 <% }); %>
             </tbody>
         </table>
     <% } else { %>
-        <p>No users found.</p>
+        <p>No employees found.</p>
     <% } %>
 
-    <form action="/user/add" method="get">
-        <input type="submit" value="Create New User">
+    <form action="/employees/add" method="get">
+        <input type="submit" value="Create New Employee">
     </form> 
 
     <footer class="footer" id="footer">

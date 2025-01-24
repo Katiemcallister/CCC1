@@ -10,4 +10,10 @@ router.get('/', function(req, res, next) {
   res.sendFile(path.join(__dirname, '', 'index.html'));
 });
 
+// Include the users route
+router.use('/user', require('./users'));
+
+// Include the employees route
+router.use('/employees', require('./employees'));
+
 module.exports = router;

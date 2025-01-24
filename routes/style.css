@@ -76,6 +76,7 @@ h1 {
     flex-direction: column;
     align-items: center;
     margin-top: 20px;
+    margin-bottom: 40px; /* Add space between login and footer */
 }
 
 .login-container h2 {
@@ -95,6 +96,7 @@ h1 {
 .login-container .form .inputBox {
     position: relative;
     width: 100%;
+    margin-bottom: 15px;
 }
 
 .login-container .form .inputBox input {
@@ -102,7 +104,7 @@ h1 {
     background: #f1f1f1;
     border: none;
     outline: none;
-    padding: 15px;
+    padding: 15px 35px 15px 15px; /* Increased right padding for eye icon */
     border-radius: 4px;
     color: #333;
     font-weight: 500;
@@ -112,8 +114,7 @@ h1 {
 .login-container .form .inputBox i {
     position: absolute;
     left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 15px;
     font-style: normal;
     color: #aaa;
     transition: 0.5s;
@@ -121,10 +122,40 @@ h1 {
 }
 
 .login-container .form .inputBox input:focus ~ i,
-.login-container .form .inputBox input:valid ~ i {
+.login-container .form .inputBox input:not(:placeholder-shown) ~ i {
     transform: translateY(-150%);
     font-size: 0.8em;
     color: #333;
+}
+
+.show-pass {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #666;
+}
+
+.progress {
+    height: 10px; /* Increase to make the bar more visible */
+    margin: 5px 0 0 0;
+    background-color: #f1f1f1;
+    border-radius: 3px;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0;
+    transition: width 0.5s;
+    border-radius: 3px;
+}
+
+/* Remove these styles as we're removing the requirements list */
+#popover-password ul,
+.list-unstyled,
+.meter-text {
+    display: none;
 }
 
 .login-container .form .links {
@@ -169,13 +200,52 @@ input[type="submit"]:active {
     max-width: 300px;
 }
 
+#loading {
+    text-align: center;
+    font-size: 1.5em;
+    color: #333;
+}
+
+.loader {
+    width: 40px;
+    aspect-ratio: 1;
+    outline: 2px solid #fff;
+    background:
+        radial-gradient(farthest-side, #000 90%, #0000) 0 0/8px 8px no-repeat,
+        conic-gradient(from 90deg at 10px 10px, #0000 90deg, #fff 0),
+        conic-gradient(from -90deg at 30px 30px, #0000 90deg, #fff 0);
+    animation: l3 1.5s infinite;
+}
+
+@keyframes l3 {
+    0% {
+        background-position: 0 0;
+        clip-path: circle(15px at left 4px top 4px);
+    }
+    25% {
+        background-position: 100% 0;
+        clip-path: circle(15px at right 4px top 4px);
+    }
+    50% {
+        background-position: 100% 100%;
+        clip-path: circle(15px at right 4px bottom 4px);
+    }
+    75% {
+        background-position: 0 100%;
+        clip-path: circle(15px at left 4px bottom 4px);
+    }
+    100% {
+        background-position: 0 0;
+        clip-path: circle(15px at left 4px top 4px);
+    }
+}
+
 .footer {
     background: linear-gradient(180deg, #252d4f 0%, rgba(37, 45, 79, 0) 100%), linear-gradient(180deg, #283583 0%, #41679f 57.29%, #61a83f 76.6%, #61a83f 87.3%, #004631 99.98%);
     color: #fff;
     padding: 20px 0;
     margin-top: auto;
     width: 100%;
-    bottom: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -236,18 +306,22 @@ input[type="submit"]:active {
     margin-top: 20px;
 }
 
+.footer__socials-title {
+    font-weight: bold; /* Make Social Links heading bold */
+}
+
 .footer__socials-list {
     display: flex;
     justify-content: center;
     gap: 10px;
     list-style: none; /* Removes the dot */
+    padding: 0; /* Ensure no padding */
 }
 
 .footer__social .social-link {
     color: #fff;
     text-decoration: none;
     font-size: 1.5em;
-
 }
 
 .footer__social .social-link i {
@@ -262,9 +336,26 @@ input[type="submit"]:active {
 }
 
 .footer__slogan {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    text-align: center; /* Center align the slogan */
+    width: 100%; /* Ensure it takes full width */
+}
+
+.footer__socials {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 1.25em;
+    width: 100%; /* Ensure it takes full width */
 }
 
 .footer__copyrights {
+    display: flex;
+    justify-content: center; /* Center align the copyright text */
+    align-items: center;
     margin-top: 10px;
+    width: 100%; /* Ensure it takes full width */
+}
+
+.footer__container--image {
+    padding-bottom: 20px; /* Add padding to ensure background ends 20px after content */
 }

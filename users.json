@@ -1,8 +1,20 @@
 [
   {
-    "id": 1,
-    "name": "Shaun",
-    "email": "shaun@test.com",
-    "role": "Software Engineer"
+    "id": 2,
+    "name": "1337XCode",
+    "email": "darshan@gmail.com",
+    "password": "darshan@gmail.com"
+  },
+  {
+    "id": 3,
+    "name": "1337XCode",
+    "email": "darshan@gmail.com",
+    "password": "darshan@gmail.com"
+  },
+  {
+    "id": 3,
+    "name": "1337XCODE",
+    "email": "darshan@gmail.com",
+    "password": "darshan@gmail.com"
   }
 ]
