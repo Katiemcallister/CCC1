@@ -4,33 +4,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Information</title>
+    <title>Employee Information</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>User Information</h1>
+    <h1>Employee Information</h1>
 
-    <% if (user) { %>
+    <% if (employee) { %>
         <table>
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Salary</th>
                     <th>Role</th>
-                    <th>Employee number</th>
+                    <th>Employee Number</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td><%= user.name %></td>
-                    <td><%= user.email %></td>
-                    <td><%= user.role %></td>
-                    <td><%= user.employee_number %></td>
+                    <td><%= employee.name %></td>
+                    <td><%= employee.address %></td>
+                    <td><%= employee.salary %></td>
+                    <td><%= employee.role %></td>
+                    <td><%= employee.employee_number %></td>
+
                 </tr>
             </tbody>
         </table>
     <% } else { %>
-        <p>No user found.</p>
+        <p>No employee found.</p>
     <% } %>
 
     
