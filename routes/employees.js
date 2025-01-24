@@ -5,7 +5,7 @@ const express = require('express');
 const  router = express.Router();
 
 router.get('/', (req, res) => {
-    let employees = employeeService.getAllEmployees();
+    let employees = employeeService.getAll();
     res.render('employees', {employees})
 });
 
@@ -17,41 +17,41 @@ router.get('/add', (req, res) => {
 // Create a new employees submit
 router.post('/add', (req, res) => {
     const newEmployees = req.body;
-    const createdEmployees = employeeService.createEmployee(newEmployees);
+    const createdEmployees = employeeService.create(newEmployees);
     res.redirect('/employees/' + createdEmployees.id)
 });
   
   // Read a employees by ID
 router.get('/:id', (req, res) => {
-    const employee = employeeService.getEmployeeById(parseInt(req.params.id));
+    const employee = employeeService.getById(parseInt(req.params.id));
     if (!employee) return res.status(404).send('Employees not found');
     res.render('employee', { employee })
 });
   
   // Update a employees by ID form
 router.get('/update/:id', (req, res) => {
-    const employee = employeeService.getEmployeeById(parseInt(req.params.id));
+    const employee = employeeService.getById(parseInt(req.params.id));
     if (!employee) return res.status(404).send('Employees not found');
     res.render('updateEmployee', {employee})
 });
   
   // Update a employees by ID
 router.post('/update/:id', (req, res) => {
-    const updatedEmployee = employeeService.updateEmployee(parseInt(req.params.id), req.body);
+    const updatedEmployee = employeeService.update(parseInt(req.params.id), req.body);
     if (!updatedEmployee) return res.status(404).send('Employees not found');
     res.redirect('/employees/' + updatedEmployee.id)
 });
   
   // Delete a employees by ID form
 router.get('/delete/:id', (req, res) => {
-    const employee = employeeService.getEmployeeById(parseInt(req.params.id));
+    const employee = employeeService.getById(parseInt(req.params.id));
     if (!employee) return res.status(404).send('Employees not found');
     res.render('deleteEmployee', {employee})
 });
   
   // Delete a employees by ID
 router.post('/delete/:id', (req, res) => {
-    const deletedEmployee = employeeService.deleteEmployee(parseInt(req.params.id));
+    const deletedEmployee = employeeService.delete(parseInt(req.params.id));
     if (!deletedEmployee) return res.status(404).send('Employees not found');
     res.redirect('/employees')
 });
