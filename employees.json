@@ -14,12 +14,5 @@
     "salary": 12345,
     "role": "Tester",
     "employee_number": 124
-  },
-  {
-    "name": "a",
-    "address": "bc",
-    "salary": "c",
-    "role": "d",
-    "id": 3
   }
 ]
