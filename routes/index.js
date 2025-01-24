@@ -10,6 +10,10 @@ router.get('/', function(req, res, next) {
   res.sendFile(path.join(__dirname, '', 'index.html'));
 });
 
+router.get('/home', function(req, res, next) {
+  res.sendFile(path.join(__dirname, '', 'home.html'));
+});
+
 // Include the users route
 router.use('/user', require('./users'));
 

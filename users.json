@@ -1,19 +1,7 @@
 [
   {
-    "id": 2,
-    "name": "1337XCode",
-    "email": "darshan@gmail.com",
-    "password": "darshan@gmail.com"
-  },
-  {
-    "id": 3,
-    "name": "1337XCode",
-    "email": "darshan@gmail.com",
-    "password": "darshan@gmail.com"
-  },
-  {
-    "id": 3,
-    "name": "1337XCODE",
+    "id": 1,
+    "name": "Darshan",
     "email": "darshan@gmail.com",
     "password": "darshan@gmail.com"
   }

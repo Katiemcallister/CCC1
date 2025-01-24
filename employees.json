@@ -1,11 +1,10 @@
 [
   {
-    "id": 1,
     "name": "John Doe",
     "address": "123 Example Street",
-    "salary": 12345,
-    "role": "Tester",
-    "employee_number": 123
+    "salary": "12345",
+    "role": "Software dev",
+    "id": 1
   },
   {
     "id": 2,

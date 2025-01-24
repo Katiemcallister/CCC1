@@ -1,12 +1,10 @@
-<!-- index.ejs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User List</title>
+    <title>Home</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="table.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
@@ -21,48 +19,11 @@
             </a>
         </nav>
     </header>
-    <h1>User List</h1>
-
-    <div class="table-handler">
-        <div class="table-handler-dropdown-cell">
-            <input type="text" class="js-handle-table" id="search-name" placeholder="Search by name">
-        </div>
+    <h1>Home</h1>
+    <div id="hello-world">
+        <h2>Hello world!</h2>
     </div>
-
-    <% if (users && users.length > 0) { %>
-        <div class="table-wrapper">
-            <table class="table">
-                <thead>
-                    <tr class="table-head">
-                        <th class="table-cell align-left">Name</th>
-                        <th class="table-cell align-left">Email</th>
-                        <th class="table-cell align-left">Password</th>
-                        <th class="table-cell align-left"></th>
-                        <th class="table-cell align-left"></th>
-                        <th class="table-cell align-left"></th>
-                    </tr>
-                </thead>
-                <tbody id="user-table-body">
-                    <% users.forEach(user => { %>
-                        <tr class="table-row">
-                            <td class="table-cell align-left"><%= user.name %></td>
-                            <td class="table-cell align-left"><%= user.email %></td>
-                            <td class="table-cell align-left"><%= user.password %></td>
-                            <td class="table-cell align-left"><a href="/user/<%= user.id %>">View</a></td>
-                            <td class="table-cell align-left"><a href="/user/update/<%= user.id %>">Edit</a></td>
-                            <td class="table-cell align-left"><a href="/user/delete/<%= user.id %>">Delete</a></td>
-                        </tr>
-                    <% }); %>
-                </tbody>
-            </table>
-        </div>
-    <% } else { %>
-        <p>No users found.</p>
-    <% } %>
-
-    <form action="/user/add" method="get">
-        <input type="submit" value="Create New User">
-    </form> 
+    <!-- Add space between hello world and footer -->
     <div style="height: 40px;"></div>
     <footer class="footer" id="footer">
         <div class="footer__container container">
@@ -187,6 +148,5 @@
             </div>
         </div>
     </footer>
-    <script src="table.js"></script>
 </body>
 </html>

@@ -1,3 +1,8 @@
+$(function () {
+    new TableApp($('#user-table-app'), 'users');
+    new TableApp($('#employee-table-app'), 'employees');
+});
+
 document.addEventListener("DOMContentLoaded", function() {
     let email = document.getElementById("email");
     let emailError = document.getElementById("email-error");
@@ -284,3 +289,126 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
+  
+class TableApp {
+    constructor($el, type) {
+        this.type = type;
+        this.initState();
+        this.defineElements($el);
+        this.render(this.state.data);
+        this.bindEvents();
+    }
+  
+    initState() {
+        this.state = { data: [] };
+    }
+  
+    defineElements($el) {
+        this.$el = $el;
+        this.$tbody = this.$el.find('tbody');
+        this.$noResults = this.$el.find('#no-results');
+        this.$filterRole = this.$el.find('#filter-role');
+        this.$sortSalary = this.$el.find('#sort-salary');
+        this.$searchName = this.$el.find('#search-name');
+    }
+  
+    bindEvents() {
+        this.handleChange = this.handleChange.bind(this);
+        this.$filterRole.on('change', this.handleChange);
+        this.$sortSalary.on('change', this.handleChange);
+        this.$searchName.on('input', this.handleChange);
+    }
+  
+    handleChange() {
+        const filtered = this.filter(this.state.data);
+        const sorted = this.sort(filtered);
+        const searched = this.search(sorted);
+        this.render(searched);
+    }
+  
+    filter(data) {
+        if (this.type === 'employees') {
+            const selectedRole = this.$filterRole.val();
+            if (selectedRole !== 'all') {
+                data = data.filter(item => item.role === selectedRole);
+            }
+        }
+        return data;
+    }
+  
+    sort(data) {
+        if (this.type === 'employees') {
+            const sortOrder = this.$sortSalary.val();
+            if (sortOrder !== 'none') {
+                data = data.sort((a, b) => {
+                    if (sortOrder === 'asc') {
+                        return a.salary - b.salary;
+                    } else {
+                        return b.salary - a.salary;
+                    }
+                });
+            }
+        }
+        return data;
+    }
+  
+    search(data) {
+        const searchTerm = this.$searchName.val().toLowerCase();
+        if (searchTerm) {
+            data = data.filter(item => item.name.toLowerCase().includes(searchTerm));
+        }
+        return data;
+    }
+  
+    render(data) {
+        if (this.type === 'users') {
+            this.renderUsers(data);
+        } else if (this.type === 'employees') {
+            this.renderEmployees(data);
+        }
+    }
+  
+    renderUsers(users) {
+        if (!users.length) {
+            this.$noResults.removeClass('hidden');
+            return;
+        }
+  
+        this.$tbody.html(
+            users.map(
+                (user) =>
+                    `<tr class="table-row">
+                        <td class="table-cell align-left">${user.name}</td>
+                        <td class="table-cell align-left">${user.email}</td>
+                        <td class="table-cell align-left">${user.password}</td>
+                        <td class="table-cell align-left"><a href="/user/${user.id}">View</a></td>
+                        <td class="table-cell align-left"><a href="/user/update/${user.id}">Edit</a></td>
+                        <td class="table-cell align-left"><a href="/user/delete/${user.id}">Delete</a></td>
+                    </tr>`
+            )
+        );
+    }
+  
+    renderEmployees(employees) {
+        if (!employees.length) {
+            this.$noResults.removeClass('hidden');
+            return;
+        }
+  
+        this.$tbody.html(
+            employees.map(
+                (employee) =>
+                    `<tr class="table-row">
+                        <td class="table-cell align-left">${employee.name}</td>
+                        <td class="table-cell align-left">${employee.address}</td>
+                        <td class="table-cell align-left">${employee.salary}</td>
+                        <td class="table-cell align-left">${employee.role}</td>
+                        <td class="table-cell align-left">${employee.employee_number}</td>
+                        <td class="table-cell align-left"><a href="/employees/${employee.id}">View</a></td>
+                        <td class="table-cell align-left"><a href="/employees/update/${employee.id}">Edit</a></td>
+                        <td class="table-cell align-left"><a href="/employees/delete/${employee.id}">Delete</a></td>
+                    </tr>`
+            )
+        );
+    }
+}

@@ -6,47 +6,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Employee List</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="table.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
     <header>
         <img src="assets/kainos_small.png" alt="Icon" class="icon">
         <nav id="nav-links">
-            <a href="/">Home</a>
+            <a href="/home.html">Home</a>
             <a href="/user">Users</a>
             <a href="/employees">Employees</a>
+            <a href="/" style="float: right;">
+                <img src="assets/signout_icon.png" alt="Sign out" style="width: 20px; height: 20px;">
+            </a>
         </nav>
     </header>
     <h1>Employee List</h1>
 
+    <div class="table-handler">
+        <div class="table-handler-dropdown-cell">
+            <div class="dropdown">
+                <h3 class="dropdown-heading">
+                    <i class="fas fa-filter"></i> Role
+                </h3>
+                <select class="select js-handle-table js-filter" id="filter-role">
+                    <option value="all">All</option>
+                    <% employees.map(employee => employee.role).filter((value, index, self) => self.indexOf(value) === index).forEach(role => { %>
+                        <option value="<%= role %>"><%= role %></option>
+                    <% }); %>
+                </select>
+            </div>
+        </div>
+        <div class="table-handler-dropdown-cell">
+            <div class="dropdown">
+                <h3 class="dropdown-heading">
+                    <i class="fas fa-sort-amount-up-alt"></i> Salary
+                </h3>
+                <select class="select js-handle-table" id="sort-salary">
+                    <option value="none">-</option>
+                    <option value="asc">Ascending</option>
+                    <option value="desc">Descending</option>
+                </select>
+            </div>
+        </div>
+        <div class="table-handler-dropdown-cell">
+            <input type="text" class="js-handle-table" id="search-name" placeholder="Search by name">
+        </div>
+    </div>
+
     <% if (employees && employees.length > 0) { %>
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Address</th>
-                    <th>Salary</th>
-                    <th>Role</th>
-                    <th>Employee Number</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <% employees.forEach(employee => { %>
-                    <tr>
-                        <td><%= employee.name %></td>
-                        <td><%= employee.address %></td>
-                        <td><%= employee.salary %></td>
-                        <td><%= employee.role %></td>
-                        <td><%= employee.employee_number %></td>
-                        <td><a href="/employees/<%= employee.id %>">View</a></td>
-                        <td><a href="/employees/update/<%= employee.id %>">Edit</a></td>
-                        <td><a href="/employees/delete/<%= employee.id %>">Delete</a></td>
+        <div class="table-wrapper">
+            <table class="table">
+                <thead>
+                    <tr class="table-head">
+                        <th class="table-cell align-left">Name</th>
+                        <th class="table-cell align-left">Address</th>
+                        <th class="table-cell align-left">Salary</th>
+                        <th class="table-cell align-left">Role</th>
+                        <th class="table-cell align-left">Employee Number</th>
+                        <th class="table-cell align-left"></th>
+                        <th class="table-cell align-left"></th>
+                        <th class="table-cell align-left"></th>
                     </tr>
-                <% }); %>
-            </tbody>
-        </table>
+                </thead>
+                <tbody id="employee-table-body">
+                    <% employees.forEach(employee => { %>
+                        <tr class="table-row">
+                            <td class="table-cell align-left"><%= employee.name %></td>
+                            <td class="table-cell align-left"><%= employee.address %></td>
+                            <td class="table-cell align-left"><%= employee.salary %></td>
+                            <td class="table-cell align-left"><%= employee.role %></td>
+                            <td class="table-cell align-left"><%= employee.employee_number %></td>
+                            <td class="table-cell align-left"><a href="/employees/<%= employee.id %>">View</a></td>
+                            <td class="table-cell align-left"><a href="/employees/update/<%= employee.id %>">Edit</a></td>
+                            <td class="table-cell align-left"><a href="/employees/delete/<%= employee.id %>">Delete</a></td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
     <% } else { %>
         <p>No employees found.</p>
     <% } %>
@@ -54,9 +92,130 @@
     <form action="/employees/add" method="get">
         <input type="submit" value="Create New Employee">
     </form> 
-
+    <div style="height: 40px;"></div>
     <footer class="footer" id="footer">
-        <!-- ...existing code... -->
+        <div class="footer__container container">
+            <div class="footer__nav row">
+                <div class="footer__nav-column col-12 col-md-3">
+                    <h6 class="footer__nav-title">Navigation</h6>
+                    <ul class="footer__nav-list">
+                        <li class="footer__nav-list-item">
+                            <a href="https://www.kainos.com/digital-services" class="footer__nav-list-link">Digital Services</a>
+                        </li>
+                        <li class="footer__nav-list-item">
+                            <a href="https://www.kainos.com/workday" class="footer__nav-list-link">Workday</a>
+                        </li>
+                        <li class="footer__nav-list-item">
+                            <a href="https://www.kainos.com/industries" class="footer__nav-list-link">Industries</a>
+                        </li>
+                        <li class="footer__nav-list-item">
+                            <a href="https://www.kainos.com/insights" class="footer__nav-list-link">Insights</a>
+                        </li>
+                        <li class="footer__nav-list-item">
+                            <a href="https://careers.kainos.com/gb/en" class="footer__nav-list-link">Careers</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer__nav-column col-12 col-md-3">
+                    <h6 class="footer__nav-title">About Kainos</h6>
+                    <ul class="footer__nav-list">
+                        <li class="footer__nav-list-item">
+                            <a href="https://www.kainos.com/about-us" class="footer__nav-list-link">About Us</a>
+                        </li>
+                        <li class="footer__nav-list-item">
+                            <a href="https://careers.kainos.com/gb/en/life-at-kainos" class="footer__nav-list-link">Our Culture</a>
+                        </li>
+                        <li class="footer__nav-list-item">
+                            <a href="https://www.kainos.com/about-us/our-approach" class="footer__nav-list-link">Our Approach</a>
+                        </li>
+                        <li class="footer__nav-list-item">
+                            <a href="https://www.kainos.com/about-us/diversity-and-inclusion" class="footer__nav-list-link">Diversity and Inclusion</a>
+                        </li>
+                        <li class="footer__nav-list-item">
+                            <a href="https://www.kainos.com/about-us/sustainability" class="footer__nav-list-link">Sustainability</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer__nav-column col-12 col-md-3">
+                    <h6 class="footer__nav-title">Investor Relations</h6>
+                    <ul class="footer__nav-list">
+                        <li class="footer__nav-list-item">
+                            <a href="https://www.kainos.com/investor-relations" class="footer__nav-list-link">Investor Relations Home</a>
+                        </li>
+                        <li class="footer__nav-list-item">
+                            <a href="https://www.kainos.com/investor-relations/investor-tools" class="footer__nav-list-link">Investor Tools</a>
+                        </li>
+                        <li class="footer__nav-list-item">
+                            <a href="https://www.kainos.com/investor-relations/results-and-presentations" class="footer__nav-list-link">Results and Presentations</a>
+                        </li>
+                        <li class="footer__nav-list-item">
+                            <a href="https://www.kainos.com/investor-relations/regulatory-news-and-events" class="footer__nav-list-link">Regulatory News and Events</a>
+                        </li>
+                        <li class="footer__nav-list-item">
+                            <a href="https://www.kainos.com/investor-relations/people-and-policies" class="footer__nav-list-link">People and Policies</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer__nav-column col-12 col-md-3">
+                    <h6 class="footer__nav-title">Legal</h6>
+                    <ul class="footer__nav-list">
+                        <li class="footer__nav-list-item">
+                            <a href="https://www.kainos.com/information/privacy-notice" class="footer__nav-list-link">Privacy Notice</a>
+                        </li>
+                        <li class="footer__nav-list-item">
+                            <a href="https://www.kainos.com/information/corporate-information" class="footer__nav-list-link">Corporate Information</a>
+                        </li>
+                        <li class="footer__nav-list-item">
+                            <a href="https://www.kainos.com/information/modern-slavery-statement" class="footer__nav-list-link">Modern Slavery Statement</a>
+                        </li>
+                        <li class="footer__nav-list-item">
+                            <a href="https://www.kainos.com/information/recruitment-notice" class="footer__nav-list-link">Recruitment Notice</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer__socials" style="text-align: center; width: 100%;">
+                <span class="footer__socials-title">Social links</span>
+                <ul class="footer__socials-list" style="list-style: none; padding: 0;">
+                    <li class="footer__socials-list-item" style="display: inline-block; margin: 0 10px;">
+                        <a href="https://www.linkedin.com/company/kainos/" class="social-link" title="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                            <span class="sr-only">LinkedIn</span>
+                        </a>
+                    </li>
+                    <li class="footer__socials-list-item" style="display: inline-block; margin: 0 10px;">
+                        <a href="https://twitter.com/KainosSoftware" class="social-link" title="Twitter">
+                            <i class="fab fa-twitter"></i>
+                            <span class="sr-only">Twitter</span>
+                        </a>
+                    </li>
+                    <li class="footer__socials-list-item" style="display: inline-block; margin: 0 10px;">
+                        <a href="https://www.facebook.com/KainosSoftware/" class="social-link" title="Facebook">
+                            <i class="fab fa-facebook"></i>
+                            <span class="sr-only">Facebook</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer__logo-wrap">
+                <a href="/">
+                    <img alt="logo" class="footer__logo-img" src="https://www.kainos.com/globalassets/images/5_logos/kainos_transparent.png?mode=crop&width=400" />
+                </a>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <div class="footer__bg-image footer__bg-image--desktop" style="background-image: url('https://www.kainos.com/globalassets/images/6_flux/flux_white_footer.png?width=1200&mode=crop&quality=80');"></div>
+            <div class="footer__bg-image footer__bg-image--mobile" style="background-image: url('https://www.kainos.com/globalassets/images/6_flux/flux_white_footer.png?width=1200&mode=crop&quality=80');"></div>
+            <div class="footer__container footer__container--image container">
+                <div class="footer__slogan" style="text-align: center; width: 100%;">
+                    <b>Thinking beyond limitations!</b>
+                </div>
+                <!-- Add space between slogan and copyright -->
+                <div style="height: 20px;"></div>
+                <div class="footer__copyrights" style="justify-content: center; width: 100%;">Copyright &#169; 2024 Kainos. Registered in NI NI019370</div>
+            </div>
+        </div>
     </footer>
+    <script src="table.js"></script>
 </body>
 </html>
